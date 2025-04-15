@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Motosfera.Models.Post>
+
+<section class="position-relative text-white text-center py-5" style="background: url('@Url.Content("~/uploads/hero-engine.jpg")') center center / cover no-repeat;">
+    <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-75"></div>
+    <div class="container position-relative">
+        <h1 class="text-uppercase mb-4"><span>Moto</span>sfera</h1>
+        <p>Trochę na temat motoryzacji</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container justify-content-center">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+            @foreach (var post in Model)
+            {
+                <div class="col">
+                    <a asp-controller="Post" asp-action="Details" asp-route-id="@post.Id" class="text-decoration-none">
+                        <div class="card bg-transparent text-white">
+                            <img src="@post.ImagePath" class="card-img-top" style="max-height: 250px; object-fit:cover;" alt="zdjęcie-główne-posta">
+                            <div class="card-body">
+                                <h5 class="card-title">@post.Title</h5>
+                                <p class="card-text">
+                                    @if (post.Content.Length > 50)
+                                    {
+                                        @Html.Raw(post.Content.Substring(0, 50))
+
+                                        <text>...</text>
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw(post.Content)
+                                    }
+                                </p>
+
+                                <p class="small mb-0">@post.CreatedAt.ToLocalTime()</p>
+                            </div>
+                        </div>
+                    </a>
+                    
+                </div>               
+            }           
+        </div>
+    </div>
+</section>
+
+

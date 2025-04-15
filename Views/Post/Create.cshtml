@@ -1,0 +1,39 @@
+﻿@model Motosfera.Models.Post
+
+<section class="py-3">
+    <div class="container">
+        <h2 class="mb-4">Dodaj nowy post</h2>
+
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div class="form-group mb-3">
+                <label asp-for="Title" class="mb-2">Tytuł</label>
+                <input asp-for="Title" class="form-control" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Content" class="mb-2">Treść</label>
+                <textarea asp-for="Content" class="form-control" id="editor"></textarea>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ImageFile" class="mx-1">Dodaj zdjęcie główne</label>
+                <input asp-for="ImageFile" type="file" class="form-control-file" />
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Zapisz i dodaj post</button>
+        </form>
+    </div>
+</section>
+
+
+
+<script src="https://cdn.tiny.cloud/1/tlwed8uiudl884ppwjl87s9lk3pjacfx5u2i254f14oiok1c/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#editor',
+        plugins: 'lists link image code',
+        toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link image',
+        menubar: false,
+        height: 300
+    });
+</script>
